@@ -1,4 +1,5 @@
 // Nominal product dimensions are metres. Educational kinematics, not fabrication CAD.
+export const MODEL_OPENING_DURATION_MS=5000;
 export function rollerPath(distance:number,height:number){
  const axisY=height+.12,r0=.07,b=.009/(2*Math.PI);
  if(distance<=axisY)return {y:distance,z:0,angle:0};

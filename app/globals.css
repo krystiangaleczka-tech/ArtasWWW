@@ -26,3 +26,5 @@ footer{font-size:15px}
 footer>span{font-size:14px}
 footer small{font-size:11px}
 @media(max-width:760px){.brand-strip>div{justify-content:flex-start;gap:12px 20px}.contact-section .eyebrow{font-size:10px}.contact-section .primary-btn{font-size:13px}.contact-details a{font-size:28px}.contact-details a.mail-link{font-size:17px}footer>span{font-size:13px}}
+.wordmark{display:inline-flex;align-items:center;width:145px;font-size:0;letter-spacing:0}.wordmark img{display:block;width:100%;height:auto}.site-header .wordmark{width:145px}footer .wordmark{width:155px}.curtain-fallback{background:repeating-linear-gradient(0deg,#202526 0,#202526 48px,#3a4041 49px,#3a4041 51px,#161819 52px,#161819 54px)}
+@media(max-width:760px){.site-header .wordmark{width:120px}footer .wordmark{width:132px}}

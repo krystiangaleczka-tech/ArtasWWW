@@ -9,7 +9,7 @@ Interaktywna strona po polsku: Three.js, React 19, TypeScript i Vinext. Na podst
 - 8 konstrukcji 3D: rozkładanie, składanie, otwarcie, obrót, zoom i półprzekrój.
 - 16 wykończeń; rolety 39/43/52 mm, brama rolowana 77 mm, bramy segmentowe 500/555/610 mm.
 - Przymiarka na zdjęciu domu: cztery narożniki, perspektywa, porównanie, eksport PNG. Zdjęcia pozostają w przeglądarce.
-- Minigry CONNECT 2.5D i BUILD 3D, obsługa dotykiem i klawiaturą.
+- Tryptyk gier ładowanych leniwie: Gate Rush, Monter 600 N i Tryb nauki; obsługa dotykiem i klawiaturą.
 - Oryginalna galeria, przebieg współpracy, automatyka, części i kontakt.
 - Opcjonalne WebMCP: odczyt i zmiana widocznej konfiguracji. Brak zależności działania strony od WebMCP.
 

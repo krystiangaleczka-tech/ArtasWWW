@@ -1,32 +1,45 @@
 # ARTAS — plany minigier
 
-## ARTAS CONNECT — gra 2.5D
+Strona główna zawiera trzy gry ładowane dopiero po wejściu ich sekcji w viewport.
+Każda gra działa w ograniczonym kontenerze, sprząta własny renderer i zapisuje wyniki
+wyłącznie w `localStorage`.
 
-Cel: przeprowadzić cztery przewody od urządzeń do odpowiednich portów fikcyjnej centrali. Inspiracja zręcznościową grą „Operacja”; samodzielna grafika i plansza.
+## Gate Rush — gra zręcznościowa
 
-- Plansza: obwód w SVG, perspektywa 2.5D, cztery osobne kanały, symbole M/F/L/P oraz kolory.
-- Pętla: chwyć złącze → prowadź w kanale → odłóż w pasującym porcie → połącz wszystkie obwody.
-- Kolizje: odległość od odcinków polilinii; badanie całego ruchu co 3 jednostki zapobiega przeskakiwaniu przez ściany.
-- Poziomy: promień tolerancji 21 lub 12 jednostek. Trzecie dotknięcie kończy próbę.
-- Wynik: max(0, 1000 − 100 × dotknięcia − 2 × sekundy). Czas kończy się po zwycięstwie lub przegranej.
-- Dostępność: symbole oprócz kolorów, wybór przewodu przyciskiem, strzałki przesuwają końcówkę, Enter zatwierdza, Escape odkłada. Mysz i dotyk korzystają z Pointer Events.
-- Reset usuwa przewody, błędy i czas. Zmiana trudności odkłada aktywny przewód.
-- Granica modelu: fikcyjna instalacja niskonapięciowa; bez rzeczywistych numerów zacisków, napięcia sieciowego czy zwierania zabezpieczeń.
+RC samochodzik przejeżdża przez automatyczną bramę segmentową. Gracz obserwuje lampę,
+fotokomórkę i prześwit, aby przejechać w dobrym momencie.
 
-Implementacja: `components/artas/WiringGame.tsx`, obliczenia `lib/artas/mechanics.ts`.
+- Poziomy: tutorial, garaż, slalom trzech bram, blackout i hardcore z logiką B.
+- Mechaniki: FSM ostrzegania, otwierania i zamykania, pilot jednorazowy, blokada wiązką,
+  rewers po kontakcie, combo, perfect thread, screen shake i iskry.
+- Faza 3: ghost replay najlepszego przejazdu, sterowanie dotykowe i lokalny leaderboard.
+- Sterowanie: WASD/strzałki, `Space` — pilot, `R` — reset; na telefonie przyciski ekranowe.
 
-## ARTAS BUILD — gra 3D
+Implementacja: `components/artas/games/GateRushGame.tsx`, `lib/games/shared.ts`.
 
-Cel: rozpoznać zależności między zespołami i zbudować działający model rolety lub bramy.
+## Monter: 600 N — gra montażowa
 
-- Plansza: model Three.js, widok rozstrzelony, metaliczne materiały, światło studyjne, obrót OrbitControls.
-- Pętla: wybierz część w modelu lub przyciskiem → zamontuj przyciskiem albo upuść ją na model → sprawdź zależność → animowane dosunięcie.
-- Roleta: prowadnice → korpus → wał z napędem → pancerz → listwa dolna → pokrywa. To dydaktyczne składanie zespołów, nie literalna kolejność montażu gotowej rolety w budynku.
-- Brama: prowadnice pionowe → łuki i tory poziome → panele z rolkami i zawiasami → zespół równoważący → napęd → zabezpieczenia.
-- Błędny wybór nie zmienia konstrukcji; wskazówka podaje brakujący zespół i jego funkcję. Poprawny wybór zwiększa postęp o 1/6.
-- Finał: po wszystkich etapach dostępny test otwarcia i zamknięcia.
-- Wszystkie operacje są dostępne zwykłymi przyciskami z klawiatury. Przeciąganie i wybieranie w scenie to dodatkowe sposoby obsługi.
-- Reset i zmiana konstrukcji rozpoczynają nową próbę.
-- Nie symulujemy naprężania sprężyn, regulacji siły i odbioru rzeczywistego urządzenia.
+Gracz składa poglądowy napęd bramy, pilnując zależności między pomiarem, prowadnicą,
+napędem, łańcuchem i zabezpieczeniami.
 
-Implementacja: `components/artas/AssemblyGame.tsx`, `lib/artas/model.ts`; kolejność w `lib/artas/catalog.ts`.
+- Siedem etapów: pomiary, wspornik, prowadnica, wiercenie, napęd, napinacz i czujniki.
+- Każdy etap pokazuje wartość docelową oraz tolerancję; model 3D jest podglądem, nie ukrytą listą elementów do kliknięcia.
+- Tryby prowadzony i precyzyjny zmieniają tolerancje.
+- Finał: test otwarcia bramy, raport, ranking i animowany ślad najlepszego montera.
+- Model nie zastępuje instrukcji montażu, regulacji sprężyn ani odbioru zabezpieczeń.
+
+Implementacja: `components/artas/games/MonterGame.tsx`, `components/artas/ProductScene.tsx`.
+
+## Diagnostyka bramy — ćwiczenie decyzyjne
+
+Gracz ustawia trzy czytelne punkty ruchu, dobiera konfigurację do opisanej sytuacji i podejmuje decyzje w symulowanych zdarzeniach.
+
+- Kalibracja wskazuje zieloną strefę dla punktu zamknięcia, zwolnienia i otwarcia.
+- Konfiguracja obejmuje fotokomórkę, czułość, logikę A/B i prędkość, a karta sytuacji jawnie podaje cel.
+- Cztery zdarzenia sprawdzają wybór bezpiecznej reakcji na fotokomórkę, nierówny ruch, pilot i zanik zasilania.
+- Raport waży kalibrację, konfigurację oraz rozpoznane decyzje bezpieczeństwa; wynik trafia do rankingu lokalnego.
+
+Implementacja: `components/artas/games/LearnModeGame.tsx`, `lib/games/shared.ts`.
+
+Wszystkie modele i zachowania mają charakter demonstracyjno-edukacyjny. Nie są schematem
+podłączania instalacji, dokumentacją wykonawczą ani instrukcją wykonywania montażu.
